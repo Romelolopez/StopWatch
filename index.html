@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./javascript/clock.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+</head>
+<body>
+    <h1>Stopwatch Project</h1>
+    <div>
+        <div id="circle">
+            <div id="clock">
+                <div id="time"></div>
+                <div id="center">
+                    <input type="text" class="input" id="minutes" size="2" onkeypress="handle()" /> : 
+                    <input type="text" class="input" id="seconds" size="2" onkeypress="handle()"/> 
+                </div>
+            </div>
+        </div>
+        <div id="button">
+            <button id="reset" onclick="reset()">Reset</button>
+        </div>
+        
+    </div>
+    
+    
+</body>
+<script>
+
+    function handle(){
+    //This gets the specific key that was pressed 13 = "enter"
+    var key=event.keyCode;
+    //make variables to get value
+    var min = document.getElementById("minutes") 
+    var sec = document.getElementById("seconds") 
+    //get the innerHTML of time
+    var time = document.getElementById("time")
+    
+    //Check if min input is in focus and user pressed enter, if so, change the focus
+        if (min == document.activeElement && key==13)
+        {
+            sec.focus()
+        }
+        //if the user has enter input in min but not in sec and presses enter a second time, start the clock based off min (submission function())
+        else if (min.value > 0 && sec == document.activeElement && key==13)
+        {
+            
+            submission();
+        }
+        //if nothing has been entered in min or sec and user presses enter. notify the user to enter some input
+        else if (sec == document.activeElement && sec.value == "" && key==13) 
+        {
+            time.innerHTML = "Enter time"
+        } 
+        //if sec has a value and the users presses enter, start the clock.
+        else if (key==13)
+        {
+            time.innerHTML = ""
+            submission();
+        }
+    }
+    
+    window.addEventListener('load', () => {
+        var min = document.getElementById("minutes") 
+        console.log("hey")
+        min.focus()
+    });
+</script>
+</html>
+
+
